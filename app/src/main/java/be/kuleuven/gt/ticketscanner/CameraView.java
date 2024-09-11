@@ -28,6 +28,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.common.util.concurrent.ListenableFuture;
 
+import java.io.File;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 
@@ -156,27 +157,40 @@ public class CameraView extends AppCompatActivity implements View.OnClickListene
     */
 
     private void capturePhoto() {
+
         long timeStamp = System.currentTimeMillis();
         ContentValues contentValues = new ContentValues();
         contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, timeStamp);
         contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg");
 
+        // storage location inaccessible by the gallery...
+        File tempFile = new File(getExternalCacheDir(), timeStamp + ".jpg");
+
 
         imageCapture.takePicture(
-                new ImageCapture.OutputFileOptions.Builder(
+            //1. WE CAN SAVE THE PICTURE IN A STORAGE SECTION INACCESSIBLE FOR THE GALLERY
+            //   AND THEN MOVE THE PICTURE IF ITS APPROVED
+
+                new ImageCapture.OutputFileOptions.Builder(tempFile).build(),
+
+            //2. WE CAN SAVE THE PICTURE DIRECTLY IN THE GALLERY
+                /*new ImageCapture.OutputFileOptions.Builder(
                         getContentResolver(),
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                         contentValues
-                ).build(),
+                ).build(),*/
+
                 getExecutor(),
                 new ImageCapture.OnImageSavedCallback() {
                     @Override
                     public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
-                        Toast.makeText(CameraView.this,"Saving...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CameraView.this,"Review photo...", Toast.LENGTH_SHORT).show();
                         // After image is saved, go to review screen
-                        String savedUri = outputFileResults.getSavedUri().toString();
+                        String tempUri = outputFileResults.getSavedUri().toString();
+
+                        String tempFilePath = tempFile.getAbsolutePath();
                         Intent intent = new Intent(CameraView.this, PhotoReviewActivity.class);
-                        intent.putExtra("photoUri", savedUri);
+                        intent.putExtra("photoPath", tempFilePath);
                         startActivity(intent);
                     }
 
