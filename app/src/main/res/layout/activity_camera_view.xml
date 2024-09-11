@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CameraView">
+
+    <!-- Main Vertical Layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- First horizontal section (flash/settings buttons) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <!-- Flash button -->
+            <ImageButton
+                android:id="@+id/flashButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                app:srcCompat="@android:drawable/ic_menu_camera"
+                android:contentDescription="Flash" />
+
+            <!-- Space to separate buttons -->
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <!-- Settings button -->
+            <ImageButton
+                android:id="@+id/settingsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                app:srcCompat="@android:drawable/ic_menu_manage"
+                android:contentDescription="Settings" />
+        </LinearLayout>
+
+        <!-- FrameLayout to display camera preview -->
+        <androidx.camera.view.PreviewView
+            android:id="@+id/previewView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#000000" />
+        <!--<FrameLayout
+            android:id="@+id/cameraPreview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#000000" >
+
+            <TextView
+                android:id="@+id/cameraInfo"
+                android:layout_width="142dp"
+                android:layout_height="38dp"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                tools:text="test0" />
+        </FrameLayout>-->
+
+        <!-- Last horizontal section (capture button centered) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <!-- View Photos button (left-aligned) -->
+            <ImageButton
+                android:id="@+id/viewPhotosButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                app:srcCompat="@android:drawable/ic_menu_gallery"
+                android:contentDescription="View Photos" />
+
+            <!-- Space to center the capture button -->
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <!-- Capture button (centered) -->
+            <ImageButton
+                android:id="@+id/captureButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="?android:attr/selectableItemBackground"
+                app:srcCompat="@android:drawable/ic_menu_camera"
+                android:contentDescription="Capture" />
+
+            <!-- Space to center the capture button -->
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <!-- Extra button if needed, otherwise space filler -->
+            <ImageButton
+                android:id="@+id/recordButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                app:srcCompat="@android:drawable/ic_menu_gallery"
+                android:contentDescription="Extra Button" />
+                <!--android:visibility="gone" /> &lt;!&ndash; Make this visible if needed &ndash;&gt;-->
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

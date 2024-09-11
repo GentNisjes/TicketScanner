@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/audiowide</item>
+        <item>@font/bangers</item>
+        <item>@font/faster_one</item>
+        <item>@font/major_mono_display</item>
+        <item>@font/sixtyfour</item>
+    </array>
+</resources>
