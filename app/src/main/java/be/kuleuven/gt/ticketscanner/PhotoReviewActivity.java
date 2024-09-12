@@ -2,6 +2,8 @@ package be.kuleuven.gt.ticketscanner;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Toast;
@@ -11,6 +13,12 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.mlkit.vision.common.InputImage;
+import com.google.mlkit.vision.text.Text;
+import com.google.mlkit.vision.text.TextRecognition;
+import com.google.mlkit.vision.text.TextRecognizer;
+import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,6 +30,7 @@ import java.io.OutputStream;
 public class PhotoReviewActivity extends AppCompatActivity {
 
     private ImageView photoPreview;
+    private TextRecognizer textRecognizer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +43,60 @@ public class PhotoReviewActivity extends AppCompatActivity {
         String photoUri = getIntent().getStringExtra("photoPath");
         photoPreview.setImageURI(Uri.parse(photoUri));
 
-        findViewById(R.id.confirmButton).setOnClickListener(view -> savePhoto(photoUri));
+        findViewById(R.id.confirmButton).setOnClickListener(view -> {
+            /*savePhoto(photoUri);*/
+            processImage(Uri.parse(photoUri));
+        });
 
         findViewById(R.id.retakeButton).setOnClickListener(view -> retakePhoto());
+    }
+
+    // 2. Process the image for text recognition
+    private void processImage(Uri imageUri) {
+        try {
+            // Convert file path to Uri if necessary
+            if (imageUri.getScheme() == null) {
+                imageUri = Uri.fromFile(new File(imageUri.getPath()));
+            }
+
+            InputStream inputStream = getContentResolver().openInputStream(imageUri);
+            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+
+            // 3. Convert Bitmap to InputImage for ML Kit
+            InputImage image = InputImage.fromBitmap(bitmap, 0);
+
+            // 4. Initialize the TextRecognizer from ML Kit
+            textRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
+
+            // 5. Process the image
+            textRecognizer.process(image)
+                    .addOnSuccessListener(visionText -> handleTextRecognitionResult(visionText))
+                    .addOnFailureListener(e -> {
+                        // Handle the error
+                        Toast.makeText(this, "Text recognition failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+        } catch (Exception e) {
+            Toast.makeText(this, "Error loading image: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Log.d("IMG_ERR", "processImage: "+ e.getMessage());
+        }
+    }
+
+    // 6. Handle the result of the text recognition
+    private void handleTextRecognitionResult(Text visionText) {
+        StringBuilder extractedText = new StringBuilder();
+
+        // Extract text from recognized blocks
+        for (Text.TextBlock block : visionText.getTextBlocks()) {
+            extractedText.append(block.getText()).append("\n");
+        }
+
+        if (extractedText.length() > 0) {
+            // For simplicity, we display it in a Toast (you could display in a TextView, save it, etc.)
+            Toast.makeText(this, "Recognized Text:\n" + extractedText.toString(), Toast.LENGTH_LONG).show();
+            System.out.println("Recognized Text:\n" + extractedText.toString());
+        } else {
+            Toast.makeText(this, "No text found in the image", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
@@ -74,7 +134,7 @@ public class PhotoReviewActivity extends AppCompatActivity {
             }
         }
         //Delete old temporary file
-        new File(tempFilePath).delete();
+        /*new File(tempFilePath).delete();*/
     }
 
 
