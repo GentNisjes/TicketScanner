@@ -92,8 +92,14 @@ public class PhotoReviewActivity extends AppCompatActivity {
 
         if (extractedText.length() > 0) {
             // For simplicity, we display it in a Toast (you could display in a TextView, save it, etc.)
-            Toast.makeText(this, "Recognized Text:\n" + extractedText.toString(), Toast.LENGTH_LONG).show();
-            System.out.println("Recognized Text:\n" + extractedText.toString());
+            /*Toast.makeText(this, "Recognized Text:\n" + extractedText.toString(), Toast.LENGTH_LONG).show();
+            System.out.println("Recognized Text:\n" + extractedText.toString());*/
+
+            //Display the resulting text in a new frame
+            Intent intent = new Intent(this, EndScreen.class);
+            intent.putExtra("EXTRACTED_TEXT", extractedText.toString());
+            startActivity(intent);
+
         } else {
             Toast.makeText(this, "No text found in the image", Toast.LENGTH_SHORT).show();
         }

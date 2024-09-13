@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/drawable/button_background.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="#FF0000"/> <!-- Red when pressed -->
+            <corners android:radius="8dp"/>
+            <stroke android:width="2dp" android:color="#FFFFFF"/> <!-- White border -->
+        </shape>
+    </item>
+    <item android:state_focused="true">
+        <shape>
+            <solid android:color="#00FF00"/> <!-- Green when focused -->
+            <corners android:radius="8dp"/>
+            <stroke android:width="2dp" android:color="#FFFFFF"/>
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <solid android:color="#0000FF"/> <!-- Blue for normal state -->
+            <corners android:radius="8dp"/>
+            <stroke android:width="2dp" android:color="#FFFFFF"/>
+        </shape>
+    </item>
+</selector>
