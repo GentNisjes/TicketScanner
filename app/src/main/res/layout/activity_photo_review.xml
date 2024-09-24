@@ -9,19 +9,21 @@
         android:id="@+id/photoPreview"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="#000000"
         android:scaleType="centerCrop"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/buttonLayout"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Buttons layout (confirm and retake) -->
     <LinearLayout
         android:id="@+id/buttonLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:background="#000000"
         android:gravity="center"
+        android:orientation="horizontal"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
@@ -30,7 +32,9 @@
             android:id="@+id/retakeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Retake" />
+            android:background="@drawable/button_rounded_ripple"
+            android:text="Retake"
+            android:textColor="#FFFFFF" />
 
         <!-- Space between buttons -->
         <Space
@@ -42,7 +46,9 @@
             android:id="@+id/confirmButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Confirm" />
+            android:background="@drawable/button_rounded_ripple"
+            android:text="Confirm"
+            android:textColor="#FFFFFF" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

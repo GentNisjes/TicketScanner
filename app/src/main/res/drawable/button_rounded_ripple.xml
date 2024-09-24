@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/drawable/rounded_borders.xml -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?android:colorControlHighlight">
+
+    <!-- Default background -->
+    <item>
+        <shape>
+            <!-- Background color -->
+            <solid android:color="#000000" /> <!-- Black background -->
+
+            <!-- Rounded corners -->
+            <corners android:radius="16dp" /> <!-- Set the desired corner radius -->
+
+            <!-- Border stroke -->
+            <stroke
+                android:width="2dp"
+                android:color="#FFFFFF" /> <!-- White border -->
+        </shape>
+    </item>
+
+    <!-- Ripple mask to define the shape of the ripple effect -->
+    <item android:id="@android:id/mask">
+        <shape>
+            <!-- Ripple effect color or shape customization -->
+            <solid android:color="#CCCCCC" /> <!-- Light gray ripple color -->
+            <corners android:radius="16dp" /> <!-- Same corner radius to match shape -->
+        </shape>
+    </item>
+</ripple>
