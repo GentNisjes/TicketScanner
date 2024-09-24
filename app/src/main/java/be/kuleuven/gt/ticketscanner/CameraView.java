@@ -39,7 +39,6 @@ public class CameraView extends AppCompatActivity implements View.OnClickListene
 
     private ImageButton flashButton;
     private ImageButton captureButton;
-    private ImageButton recordButton;
     private TextView cameraInfo;
 
     private ImageCapture imageCapture;
@@ -52,16 +51,14 @@ public class CameraView extends AppCompatActivity implements View.OnClickListene
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_camera_view);
 
-        flashButton = findViewById(R.id.flashButton);
+        /*flashButton = findViewById(R.id.flashButton);*/
         captureButton = findViewById(R.id.captureButton);
-        recordButton = findViewById(R.id.recordButton);
         /*cameraInfo = findViewById(R.id.cameraInfo);*/
         previewView = findViewById(R.id.previewView);
 
 
         captureButton.setOnClickListener(this);
-        recordButton.setOnClickListener(this);
-        flashButton.setOnClickListener(this);
+        /*flashButton.setOnClickListener(this);*/
 
         cameraProviderFuture = ProcessCameraProvider.getInstance(this);
         cameraProviderFuture.addListener(() -> {
@@ -108,6 +105,8 @@ public class CameraView extends AppCompatActivity implements View.OnClickListene
                 .setFlashMode(ImageCapture.FLASH_MODE_AUTO)
                 .build();
 
+        //set up for possible video capture implementation
+        // TODO: 24/09/2024 implementation to record video (not that important)
         videoCapture = new VideoCapture.Builder()
                 .setVideoFrameRate(30)
                 .build();

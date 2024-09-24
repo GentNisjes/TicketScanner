@@ -74,7 +74,7 @@ public class EndScreen extends AppCompatActivity {
         values.put(MediaStore.Images.Media.DISPLAY_NAME, "approved_photo_" + System.currentTimeMillis());
         values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
 
-        // Insert the new image into the MediaStore
+        // Insert the new image into the MediaStore aka gallery
         Uri externalUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
         Uri savedUri = getContentResolver().insert(externalUri, values);
 
