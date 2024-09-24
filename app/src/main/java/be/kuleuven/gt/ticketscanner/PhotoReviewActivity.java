@@ -98,6 +98,7 @@ public class PhotoReviewActivity extends AppCompatActivity {
             //Display the resulting text in a new frame
             Intent intent = new Intent(this, EndScreen.class);
             intent.putExtra("EXTRACTED_TEXT", extractedText.toString());
+            intent.putExtra("IMAGE_URI", getIntent().getStringExtra("photoPath"));
             startActivity(intent);
 
         } else {
@@ -110,7 +111,7 @@ public class PhotoReviewActivity extends AppCompatActivity {
 
         Log.d("TempPhotoPath", "Path: " + tempFilePath);
         File tempFile = new File(tempFilePath);
-            if (!tempFile.exists()) {
+        if (!tempFile.exists()) {
             Log.e("FileNotFound", "The temp file doesn't exist at " + tempFilePath);
             return; // Or handle the error appropriately
         }
