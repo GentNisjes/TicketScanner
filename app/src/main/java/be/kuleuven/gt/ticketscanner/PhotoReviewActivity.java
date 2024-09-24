@@ -95,6 +95,8 @@ public class PhotoReviewActivity extends AppCompatActivity {
             /*Toast.makeText(this, "Recognized Text:\n" + extractedText.toString(), Toast.LENGTH_LONG).show();
             System.out.println("Recognized Text:\n" + extractedText.toString());*/
 
+
+
             //Display the resulting text in a new frame
             Intent intent = new Intent(this, EndScreen.class);
             intent.putExtra("EXTRACTED_TEXT", extractedText.toString());

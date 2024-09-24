@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     //otherwise ask for access
     public void onCameraClicked (View Caller){
         if (hasCameraPermission()){
-            Intent intent = new Intent(this, CameraView.class);
+            Intent intent = new Intent(this, CameraView2.class);
             startActivity(intent);
         } else {
             requestPermission();
