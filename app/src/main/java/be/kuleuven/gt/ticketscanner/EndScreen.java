@@ -33,6 +33,7 @@ public class EndScreen extends AppCompatActivity {
     private TextView displayField;
     private Button copyBtn;
     private Button saveImgBtn;
+    private Button viewImage;
     private String photoURI;
 
     @Override
@@ -46,6 +47,8 @@ public class EndScreen extends AppCompatActivity {
         copyBtn.setOnClickListener(view -> copyTextToClipboard());
         saveImgBtn = findViewById(R.id.saveImgBtn);
         saveImgBtn.setOnClickListener(view -> saveImage());
+        viewImage = findViewById(R.id.viewImage);
+        viewImage.setOnClickListener(view -> openImageDialog());
 
         String capturedText = getIntent().getStringExtra("EXTRACTED_TEXT");
         photoURI = getIntent().getStringExtra("IMAGE_URI");
@@ -56,6 +59,11 @@ public class EndScreen extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    private void openImageDialog() {
+        ImagePreviewDialog imagePreviewDialog = ImagePreviewDialog.newInstance(photoURI);
+        imagePreviewDialog.show(getSupportFragmentManager(), "imagePreview");
     }
 
     private void saveImage() {

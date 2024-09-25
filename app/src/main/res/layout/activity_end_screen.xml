@@ -13,42 +13,64 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="158dp"
+            android:paddingTop="50px"
+            android:paddingBottom="50px">
+
+            <Button
+                android:id="@+id/viewImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_rounded_ripple"
+                android:paddingLeft="50px"
+                android:paddingTop="50px"
+                android:paddingRight="50px"
+                android:paddingBottom="50px"
+                android:text="view image"
+                android:textAllCaps="true"
+                android:textColor="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/copyBtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/infoText" />
 
             <TextView
                 android:id="@+id/infoText"
                 android:layout_width="wrap_content"
-                android:layout_height="64dp"
-                android:layout_marginLeft="50px"
-                android:layout_marginTop="20px"
-                android:layout_marginRight="50px"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30px"
                 android:text="Here's your extracted text:"
                 android:textAllCaps="true"
                 android:textColor="#FFFFFF"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.061" />
 
             <Button
                 android:id="@+id/copyBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50px"
-                android:layout_marginTop="50px"
-                android:layout_marginRight="50px"
-                android:layout_marginBottom="50px"
                 android:background="@drawable/button_rounded_ripple"
-                android:backgroundTint="@null"
 
+                android:backgroundTint="@null"
                 android:paddingLeft="50px"
                 android:paddingTop="50px"
                 android:paddingRight="50px"
                 android:paddingBottom="50px"
                 android:text="Copy text"
-                android:textColor="#FFFFFF" />
-        </LinearLayout>
+                android:textColor="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="@+id/viewImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/viewImage"
+                app:layout_constraintTop_toTopOf="@+id/viewImage" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
             android:id="@+id/saveImgBtn"

@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String[] CAMERA_PERMISSION = new String[]{Manifest.permission.CAMERA};
     private static final int CAMERA_REQUEST_CODE = 10;
     private ImageButton CameraButton;
+    private ImageButton ticketButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         CameraButton = findViewById(R.id.TakeImageBtn);
+        ticketButton = findViewById(R.id.ticketButton);
+
+        ticketButton.setOnClickListener(view -> {
+            onTicketClicked();
+        });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -36,17 +42,23 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void onTicketClicked() {
+        Intent intent = new Intent(this, CameraView2.class);
+        intent.putExtra("activityIdentifier", "ticketOCR");
+        startActivity(intent);
+    }
+
     //check permissions for camera access
     //and redirect if access granted
     //otherwise ask for access
     public void onCameraClicked (View Caller){
         if (hasCameraPermission()){
             Intent intent = new Intent(this, CameraView2.class);
+            intent.putExtra("activityIdentifier", "cameraOCR");
             startActivity(intent);
         } else {
             requestPermission();
         }
-
     }
 
     private boolean hasCameraPermission() {

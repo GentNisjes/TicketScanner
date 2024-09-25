@@ -2,6 +2,7 @@ package be.kuleuven.gt.ticketscanner;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -25,12 +26,15 @@ public class CameraView2 extends AppCompatActivity implements View.OnClickListen
     private PreviewView previewView;
     private ImageButton captureButton;
     private CameraHelper cameraHelper;
+    private String activityIdentifier;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_camera_view2);
+
+        activityIdentifier = getIntent().getStringExtra("activityIdentifier");
 
         captureButton = findViewById(R.id.captureButton);
         previewView = findViewById(R.id.previewView);
@@ -66,6 +70,8 @@ public class CameraView2 extends AppCompatActivity implements View.OnClickListen
                     Toast.makeText(CameraView2.this, "Photo saved successfully!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(CameraView2.this, PhotoReviewActivity.class);
                     intent.putExtra("photoPath", filePath);
+                    intent.putExtra("activityIdentifier", activityIdentifier);
+                    Log.d("activityID", "onImageSaved: " + activityIdentifier);
                     startActivity(intent);
                 }
 

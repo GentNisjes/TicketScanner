@@ -59,14 +59,14 @@
         android:layout_height="38dp"
         android:text="WANT TO CALCULATE THE TOTAL PRICE OF YOUR BTW TICKETS?"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintBottom_toBottomOf="@+id/ticketButton"
+        app:layout_constraintEnd_toStartOf="@+id/ticketButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageButton" />
+        app:layout_constraintTop_toTopOf="@+id/ticketButton" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/ticketButton"
         android:layout_width="48dp"
         android:layout_height="47dp"
         android:layout_marginTop="134dp"
