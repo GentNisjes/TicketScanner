@@ -1,7 +1,15 @@
-This repository is a sort of follow up on the OCR (python) repository.
 
-Basic Java photo app (OCR) made with android studio
+OCR Ticket/Receipt Scanner (Android)
+---
 
-"special" tech used;
- - the CameraX android camera library
- - google mlkit for ocr implementation 
+This project is a continuation of the previous Python OCR repository, now implemented as a basic Android photo app using Android Studio.
+
+Technologies Used:
+* CameraX – for seamless camera integration
+* Google ML Kit – for optical character recognition (OCR)
+  
+Project Goal:
+The app allows users to scan receipts, extract key financial details such as price and VAT (BTW) from multiple receipts, and generate a summary of total expenses and VAT.
+
+
+
